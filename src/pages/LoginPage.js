@@ -35,7 +35,7 @@ class LoginPage extends React.Component {
         <input type="text" name="username" value={this.state.username} onChange={this.handleChange} /><br />
         <label htmlFor="password">Password: </label>
         <input type="text" name="password" value={this.state.password} onChange={this.handleChange} /><br />
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Login" />
       </form>
     );
   }

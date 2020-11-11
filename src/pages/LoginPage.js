@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 class LoginPage extends React.Component {
 
@@ -15,6 +16,7 @@ class LoginPage extends React.Component {
   }
 
   handleChange(event) {
+    if (event.name === "csrfmiddlewaretoken") return;
     event.preventDefault();
 
     const state = {...this.state};
@@ -25,7 +27,48 @@ class LoginPage extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    // TODO: send the request to the API
+    axios.post('login/', {
+      username: this.state.username,
+      password: this.state.password
+    })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  handleCsrf(event) {
+    event.preventDefault();
+
+    axios.get('ensure_csrf/', {withCredentials: true})
+      .then(function (response) {
+        // handle success
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
+  }
+
+  handleProtected(event) {
+    axios.get('protected/')
+      .then(function (response) {
+        // handle success
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function () {
+        // always executed
+      });
   }
 
   render() {
@@ -41,8 +84,10 @@ class LoginPage extends React.Component {
             <label htmlFor="username">Password</label>
             <input type="password" className="form-control" id="password" name="password" value={this.state.password} onChange={this.handleChange} />
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-primary">Login</button>
         </form>
+        <button type="submit" className="btn btn-warning" onClick={this.handleProtected}>Protected</button>
+        <button className="btn btn-success" onClick={this.handleCsrf}>EnsureCSRF</button>
       </>
     );
   }

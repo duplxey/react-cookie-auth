@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 class SignUpPage extends React.Component {
 
@@ -8,7 +9,7 @@ class SignUpPage extends React.Component {
     this.state = {
       username: "",
       password: "",
-      password_confirmation: "",
+      password1: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -26,7 +27,17 @@ class SignUpPage extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    // TODO: send the request to the API
+    axios.post('signup/', {
+      username: this.state.username,
+      password: this.state.password,
+      password1: this.state.password1,
+    })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render() {
@@ -43,8 +54,8 @@ class SignUpPage extends React.Component {
             <input type="password" className="form-control" id="password" name="password" value={this.state.password} onChange={this.handleChange} />
           </div>
           <div className="form-group">
-            <label htmlFor="password_confirmation">Password confirmation</label>
-            <input type="password" className="form-control" id="password_confirmation" name="password_confirmation" value={this.state.password_confirmation} onChange={this.handleChange} />
+            <label htmlFor="password1">Password confirmation</label>
+            <input type="password" className="form-control" id="password1" name="password1" value={this.state.password1} onChange={this.handleChange} />
           </div>
           <button type="submit" className="btn btn-primary">Sign up</button>
         </form>

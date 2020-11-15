@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 class LogoutPage extends React.Component {
 
@@ -11,7 +12,13 @@ class LogoutPage extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    // TODO: send the request to the API
+    axios.post('logout/')
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render() {

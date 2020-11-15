@@ -16,7 +16,6 @@ class LoginPage extends React.Component {
   }
 
   handleChange(event) {
-    if (event.name === "csrfmiddlewaretoken") return;
     event.preventDefault();
 
     const state = {...this.state};
@@ -39,38 +38,6 @@ class LoginPage extends React.Component {
       });
   }
 
-  handleCsrf(event) {
-    event.preventDefault();
-
-    axios.get('ensure_csrf/', {withCredentials: true})
-      .then(function (response) {
-        // handle success
-        console.log(response);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
-  }
-
-  handleProtected(event) {
-    axios.get('protected/')
-      .then(function (response) {
-        // handle success
-        console.log(response);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
-  }
-
   render() {
     return (
       <>
@@ -86,8 +53,6 @@ class LoginPage extends React.Component {
           </div>
           <button type="submit" className="btn btn-primary">Login</button>
         </form>
-        <button type="submit" className="btn btn-warning" onClick={this.handleProtected}>Protected</button>
-        <button className="btn btn-success" onClick={this.handleCsrf}>EnsureCSRF</button>
       </>
     );
   }

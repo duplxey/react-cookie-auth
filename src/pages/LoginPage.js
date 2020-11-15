@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { withRouter } from 'react-router';
 
 class LoginPage extends React.Component {
 
@@ -37,8 +36,20 @@ class LoginPage extends React.Component {
       .catch(function (error) {
         console.log(error);
       });
+  }
 
-    this.props.history.push('/');
+  ensureCSRF(event) {
+    event.preventDefault();
+
+    console.log("Ensuring CSRF.");
+
+    axios.get('ensure_csrf/')
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render() {
@@ -64,9 +75,10 @@ class LoginPage extends React.Component {
           </div>
           <button type="submit" className="btn btn-primary">Login</button>
         </form>
+        <button className="btn btn-primary" onClick={this.ensureCSRF}>Ensure csrf</button>
       </>
     );
   }
 }
 
-export default withRouter(LoginPage);
+export default LoginPage;

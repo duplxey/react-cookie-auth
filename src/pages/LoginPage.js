@@ -39,6 +39,14 @@ class LoginPage extends React.Component {
   }
 
   render() {
+    if (this.props.loggedIn) {
+      return (
+        <>
+          <h2>Login</h2>
+          <p>You're already logged in.</p>
+        </>
+      )
+    }
     return (
       <>
         <h2>Login</h2>

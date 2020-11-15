@@ -41,6 +41,14 @@ class SignUpPage extends React.Component {
   }
 
   render() {
+    if (this.props.loggedIn) {
+      return (
+        <>
+          <h2>Sign up</h2>
+          <p>You're already logged in.</p>
+        </>
+      )
+    }
     return (
       <>
         <h2>Sign up</h2>

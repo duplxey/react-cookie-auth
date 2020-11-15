@@ -1,19 +1,20 @@
 import React from "react";
-import axios from "axios";
 
-const HomePage = () => {
-
+const HomePage = (props) => {
   return (
     <>
       <h2>Home</h2>
-      <p>
-        You're not logged in.
-      </p>
-      <p>
-        You are logged in as bloop.
-      </p>
+      {props.loggedIn ?
+        <p>
+          You're logged in as {props.username}.
+        </p>
+        :
+        <p>
+          You're not logged in.
+        </p>
+      }
     </>
   )
-};
+}
 
 export default HomePage;

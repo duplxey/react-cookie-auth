@@ -22,6 +22,14 @@ class LogoutPage extends React.Component {
   }
 
   render() {
+    if (!this.props.loggedIn) {
+      return (
+        <>
+          <h2>Logout</h2>
+          <p>You're not logged in.</p>
+        </>
+      )
+    }
     return (
       <>
         <h2>Logout</h2>

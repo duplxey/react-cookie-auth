@@ -12,7 +12,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      loggedIn: false,
+      loggedIn: null,
       username: null,
     };
   }
@@ -31,6 +31,10 @@ class App extends React.Component {
   }
 
   render() {
+    // Do not load the navigation if data hasn't been fetched yet.
+    if (this.state.loggedIn == null) {
+      return <></>
+    }
     return (
       <div className="App">
         <div className="container">

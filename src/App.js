@@ -18,6 +18,18 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.fetch();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      this.fetch();
+    }
+  }
+
+  fetch = () => {
+    console.log("boop");
+
     axios.get('info/')
       .then((response) => {
         this.setState({
@@ -28,7 +40,7 @@ class App extends React.Component {
       .catch(function (error) {
         console.log(error);
       });
-  }
+  };
 
   render() {
     // Do not load the navigation if data hasn't been fetched yet.

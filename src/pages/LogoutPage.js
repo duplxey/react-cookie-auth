@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { withRouter } from 'react-router';
 
 class LogoutPage extends React.Component {
 
@@ -19,6 +20,8 @@ class LogoutPage extends React.Component {
       .catch(function (error) {
         console.log(error);
       });
+
+    this.props.history.push('/');
   }
 
   render() {
@@ -42,4 +45,4 @@ class LogoutPage extends React.Component {
   }
 }
 
-export default LogoutPage;
+export default withRouter(LogoutPage);

@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { withRouter } from 'react-router';
 
 class LoginPage extends React.Component {
 
@@ -36,6 +37,8 @@ class LoginPage extends React.Component {
       .catch(function (error) {
         console.log(error);
       });
+
+    this.props.history.push('/');
   }
 
   render() {
@@ -66,4 +69,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);

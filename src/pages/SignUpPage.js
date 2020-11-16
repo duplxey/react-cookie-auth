@@ -32,7 +32,7 @@ class SignUpPage extends React.Component {
       username: this.state.username,
       password: this.state.password,
       password1: this.state.password1,
-    })
+    }, { withCredentials: true })
       .then(function (response) {
         console.log(response);
       })

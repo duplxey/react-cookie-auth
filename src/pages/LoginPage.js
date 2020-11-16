@@ -29,7 +29,7 @@ class LoginPage extends React.Component {
     axios.post('login/', {
       username: this.state.username,
       password: this.state.password
-    })
+    }, { withCredentials: true })
       .then(function (response) {
         console.log(response);
       })
@@ -43,7 +43,7 @@ class LoginPage extends React.Component {
 
     console.log("Ensuring CSRF.");
 
-    axios.get('ensure_csrf/')
+    axios.get('ensure_csrf/', { withCredentials: true })
       .then(function (response) {
         console.log(response);
       })

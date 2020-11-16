@@ -13,7 +13,7 @@ class LogoutPage extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    axios.post('logout/')
+    axios.post('logout/', { withCredentials: true })
       .then(function (response) {
         console.log(response);
       })

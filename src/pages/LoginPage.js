@@ -29,7 +29,7 @@ class LoginPage extends React.Component {
     axios.post('login/', {
       username: this.state.username,
       password: this.state.password
-    }, { withCredentials: true })
+    }, { withCredentials: true, headers: { 'Content-Type': "application/json" } })
       .then(function (response) {
         console.log(response);
       })
